@@ -1,7 +1,7 @@
-import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answer-comments-repository"
-import { FetchAnswerCommentsUseCase } from "./fetch-answer-comments"
-import { makeAnswerComment } from "test/factories/make-answer-comments"
-import { UniqueEntityID } from "@/core/entities/unique-entity-id"
+import { InMemoryAnswerCommentsRepository } from 'test/repositories/in-memory-answer-comments-repository'
+import { FetchAnswerCommentsUseCase } from './fetch-answer-comments'
+import { makeAnswerComment } from 'test/factories/make-answer-comments'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository
 let sut: FetchAnswerCommentsUseCase
@@ -13,17 +13,23 @@ describe('Fetch Answer Comments', () => {
   })
 
   it('should be able to fetch answer comments', async () => {
-    await inMemoryAnswerCommentsRepository.create(makeAnswerComment({
-      answerId: new UniqueEntityID('answer-01')
-    }))
+    await inMemoryAnswerCommentsRepository.create(
+      makeAnswerComment({
+        answerId: new UniqueEntityID('answer-01'),
+      }),
+    )
 
-    await inMemoryAnswerCommentsRepository.create(makeAnswerComment({
-      answerId: new UniqueEntityID('answer-01')
-    }))
+    await inMemoryAnswerCommentsRepository.create(
+      makeAnswerComment({
+        answerId: new UniqueEntityID('answer-01'),
+      }),
+    )
 
-    await inMemoryAnswerCommentsRepository.create(makeAnswerComment({
-      answerId: new UniqueEntityID('answer-01')
-    }))
+    await inMemoryAnswerCommentsRepository.create(
+      makeAnswerComment({
+        answerId: new UniqueEntityID('answer-01'),
+      }),
+    )
 
     const result = await sut.execute({
       answerId: 'answer-01',
@@ -34,11 +40,11 @@ describe('Fetch Answer Comments', () => {
   })
 
   it('should be able to fetch paginated answer comments', async () => {
-    for(let i = 1; i <= 22; i++) {
+    for (let i = 1; i <= 22; i++) {
       await inMemoryAnswerCommentsRepository.create(
         makeAnswerComment({
           answerId: new UniqueEntityID('answer-01'),
-        })
+        }),
       )
     }
 

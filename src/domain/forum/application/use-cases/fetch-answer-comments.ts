@@ -1,6 +1,6 @@
-import { Either, right } from '@/core/either';
-import { AnswerComment } from '../../enterprise/entities/answer-comment';
-import { AnswerCommentsRepository } from '../repositories/answer-comments-repository';
+import { Either, right } from '@/core/either'
+import { AnswerComment } from '../../enterprise/entities/answer-comment'
+import { AnswerCommentsRepository } from '../repositories/answer-comments-repository'
 
 interface FetchAnswerCommentsUseCaseRequest {
   answerId: string
@@ -21,7 +21,10 @@ export class FetchAnswerCommentsUseCase {
     answerId,
     page,
   }: FetchAnswerCommentsUseCaseRequest): Promise<FetchAnswerCommentsUseCaseResponse> {
-    const answerComments = await this.answersCommentsRepository.findManyByAnswerId(answerId, { page })
+    const answerComments =
+      await this.answersCommentsRepository.findManyByAnswerId(answerId, {
+        page,
+      })
 
     return right({
       answerComments,
